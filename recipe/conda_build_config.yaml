@@ -2,20 +2,20 @@
 vcver:
  - 14.3
  - 14.3
- - 14.2
+ - 14.2  # [win64]
 vsyear:
  - 2022
  - 2022
- - 2019
+ - 2019  # [win64]
 vsver:
  - 17
  - 17
- - 16
+ - 16    # [win64]
 
 runtime_version:
  - 14.44.35208
  - 14.42.34433
- - 14.29.30133
+ - 14.29.30133  # [win64]
 
 c_stdlib_version:   # [win]
   - 2022.14         # [win]
@@ -29,7 +29,9 @@ zip_keys:
 # FINAL_* entries are taken from the linux64 entries in ctng-compiler-activation-feedstock
 # Removed -fPIC
 FINAL_CFLAGS:
-  - -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe
+  - -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe  # [win64]
+  - -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe                          # [arm64]
 
 FINAL_CXXFLAGS:
-  - -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe
+  - -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe  # [win64]
+  - -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe                          # [arm64]

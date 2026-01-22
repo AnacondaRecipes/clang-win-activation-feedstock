@@ -18,16 +18,15 @@ build:
   skip: True  # [not win]
 
 outputs:
-  - name: clang_win-64
+  - name: clang_{{ target_platform }}
     script: install-pkg.bat
-    skip: True  # [not win]
     run_exports:
         strong:
           #  See: https://github.com/AnacondaRecipes/vc-feedstock/blob/main/recipe/meta.yaml
           - vc >={{ vcver }},<{{ vc_major | int + 1 }}
           - vc{{ vc_major }}_runtime >={{ runtime_version }}
           # Need ucrt for windows<10 and when the VC runtime does not bundle it
-          - ucrt >=10.0.20348.0  # [(vsver >=16) and (cross_target_platform == "win-64" or cross_target_platform == "win-32")]
+          - ucrt >=10.0.20348.0  # [vsver >=16]
     requirements:
       build:
         - msys2-sed
@@ -41,7 +40,7 @@ outputs:
         - llvm-tools          {{ version }}
         - lld                 {{ version }}
         - compiler-rt         {{ version }}
-        - compiler-rt_win-64  {{ version }}
+        - compiler-rt_{{ target_platform }}  {{ version }}
     test:                   
       files:                
         - test.c            
@@ -66,7 +65,7 @@ about:
        CONDA_BUILD_WINSDK:
          - "/opt"
 
-    in $HOME/conda_build_config.yaml and use `clang_win-64` as the compiler.
+    in $HOME/conda_build_config.yaml and use `clang_win-64` or `clang_win-arm64` as the compiler.
 
     By setting this variable, you are agreeing to the terms and conditions
     of the Windows SDK and the MSVC headers. If the Windows SDK and MSVC
