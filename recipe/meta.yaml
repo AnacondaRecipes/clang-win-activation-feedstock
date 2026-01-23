@@ -35,7 +35,7 @@ outputs:
         - clangxx     {{ version }}
         - llvm-tools  {{ version }}
       run:
-        - vs_{{ target_platform }} {{ vsyear }}
+        - vs_{{ target_platform }} {{ c_stdlib_version }}
         - clangxx             {{ version }}
         - llvm-tools          {{ version }}
         - lld                 {{ version }}
