@@ -17,9 +17,6 @@ runtime_version:
  - 14.42.34433
  - 14.29.30133
 
-c_stdlib_version:   # [win]
-  - 2022.14         # [win]
-
 zip_keys:
  - - vcver
    - vsyear
