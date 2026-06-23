@@ -22,13 +22,12 @@ zip_keys:
    - vsyear
    - vsver
    - runtime_version
-   - c_stdlib_version
 
 # FINAL_* entries are taken from the linux64 entries in ctng-compiler-activation-feedstock
 # Removed -fPIC
 FINAL_CFLAGS:
   - -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe  # [win64]
-  - -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe                          # [arm64]
+  - -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe                           # [arm64]
 
 FINAL_CXXFLAGS:
   - -fvisibility-inlines-hidden -std=c++17 -fmessage-length=0 -march=k8 -mtune=haswell -ftree-vectorize -fstack-protector-strong -O2 -ffunction-sections -pipe  # [win64]
