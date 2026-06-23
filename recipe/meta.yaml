@@ -14,12 +14,13 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not win]
 
 outputs:
   - name: clang_{{ target_platform }}
     script: install-pkg.bat
+    skip: True  # [not win]
     run_exports:
         strong:
           #  See: https://github.com/AnacondaRecipes/vc-feedstock/blob/main/recipe/meta.yaml
