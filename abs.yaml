@@ -1,3 +1,6 @@
-build_parameters:
-  - "--suppress-variables"
-  - "--error-overlinking"
+# PR CI only - lld and compiler-rt 23.1.4 are not on pkgs/main yet; REMOVE before merge:
+# lld (AnacondaRecipes/lld-feedstock#17, graph of head 64f0c7c; later macOS-only commits do not change the Windows packages),
+# compiler-rt (AnacondaRecipes/compiler-rt-feedstock#16, graph of head abbcaf5)
+channels:
+  - https://package-build.internal.anaconda.com/pkg-orchestrator/v1/channels/graphs/560a2ddc-710f-4f8c-9002-1e23734c6118
+  - https://package-build.internal.anaconda.com/pkg-orchestrator/v1/channels/graphs/d040a67c-005d-4dfa-8b68-b481d7ad0fe3
