@@ -1,4 +1,4 @@
-{% set version = "22.1.2" %}
+{% set version = "23.1.4" %}
 
 {% if not vsyear %}
   {% set vsyear = "" %}
@@ -14,7 +14,7 @@ package:
   version: {{ version }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [not win]
 
 outputs:
@@ -26,8 +26,9 @@ outputs:
           #  See: https://github.com/AnacondaRecipes/vc-feedstock/blob/main/recipe/meta.yaml
           - vc >={{ vcver }},<{{ vc_major | int + 1 }}
           - vc{{ vc_major }}_runtime >={{ runtime_version }}
-          # Need ucrt for windows<10 and when the VC runtime does not bundle it
-          - ucrt >=10.0.20348.0  # [vsver >=16]
+          # Need ucrt for windows<10 and when the VC runtime does not bundle it;
+          # win-arm64 has the UCRT in the OS and no ucrt package on pkgs/main
+          - ucrt >=10.0.20348.0  # [vsver >=16 and win64]
     requirements:
       build:
         - msys2-sed
@@ -77,6 +78,7 @@ about:
 
 extra:
   skip-lints:
+    # activation package: nothing is compiled; the VS stdlib is a run requirement (vs_{{ target_platform }})
     - stdlib_must_be_in_build
   recipe-maintainers:
     - isuruf
