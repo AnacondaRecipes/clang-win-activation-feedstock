@@ -14,11 +14,11 @@ package:
   version: {{ version }}
 
 build:
-  number: 0
+  number: 1
   skip: True  # [not win]
 
 outputs:
-  - name: clang_win-64
+  - name: clang_{{ target_platform }}
     script: install-pkg.bat
     skip: True  # [not win]
     run_exports:
@@ -41,7 +41,7 @@ outputs:
         - llvm-tools          {{ version }}
         - lld                 {{ version }}
         - compiler-rt         {{ version }}
-        - compiler-rt_win-64  {{ version }}
+        - compiler-rt_{{ target_platform }}  {{ version }}
     test:                   
       files:                
         - test.c            
@@ -66,7 +66,7 @@ about:
        CONDA_BUILD_WINSDK:
          - "/opt"
 
-    in $HOME/conda_build_config.yaml and use `clang_win-64` as the compiler.
+    in $HOME/conda_build_config.yaml and use `clang_win-64` or `clang_win-arm64` as the compiler.
 
     By setting this variable, you are agreeing to the terms and conditions
     of the Windows SDK and the MSVC headers. If the Windows SDK and MSVC
